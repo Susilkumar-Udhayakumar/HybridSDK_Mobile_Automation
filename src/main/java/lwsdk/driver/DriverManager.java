@@ -12,6 +12,9 @@ import io.appium.java_client.android.options.UiAutomator2Options;
 
 public class DriverManager {
 //	public AppiumDriver driver1=null;
+	
+	public static AppiumDriver driver=null;
+	
 	public String deviceName, version, URL, app_id, buildName, sauce_UserName, sauce_Password;
 	
 	public AppiumDriver setAndriodDriverLocal() throws MalformedURLException {
@@ -23,6 +26,10 @@ public class DriverManager {
 			    new URL("http://127.0.0.1:4723"), options
 			);
 //		driver.findElement(By.id("com.freshworks.lwsdk:id/btnShowConversations")).click();
+		return driver;
+	}
+	
+	public static AppiumDriver getDriver() {
 		return driver;
 	}
 
