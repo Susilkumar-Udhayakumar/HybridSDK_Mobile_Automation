@@ -16,7 +16,8 @@ public class AndroidBase extends AndroidMobileWrapperImpl {
 	@BeforeSuite
 	public void beforeSuite() throws MalformedURLException {
 		DriverManager dm = new DriverManager();
-		driver = dm.setAndriodDriverLocal();
+//		driver = dm.setAndriodDriverLocal();
+		driver = dm.SetAndroidDriverSauceLabs();
 		platform = "Android";
 	}
 

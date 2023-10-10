@@ -3,12 +3,12 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="lwsdk.android.module.testcases.SampleTestCaseAndroid">
+      <class name="lwsdk.ios.module.testcases.SampleTestCaseiOS">
         <methods>
-          <include name="test1"/>
           <include name="beforeSuite"/>
+          <include name="test1"/>
         </methods>
-      </class> <!-- lwsdk.android.module.testcases.SampleTestCaseAndroid -->
+      </class> <!-- lwsdk.ios.module.testcases.SampleTestCaseiOS -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
