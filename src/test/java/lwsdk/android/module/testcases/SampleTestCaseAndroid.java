@@ -9,9 +9,9 @@ public class SampleTestCaseAndroid extends AndroidBase  {
 
 	@Test
 	public void test1() {
-		System.out.println("Android Test case");
-		new HomePage()
-		.clickHome();
+		new HomePage(driver)
+		.clickConversationButton();
+		
 	}
 	
 }

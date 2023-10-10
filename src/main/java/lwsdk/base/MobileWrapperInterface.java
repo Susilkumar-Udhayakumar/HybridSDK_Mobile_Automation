@@ -1,8 +1,12 @@
 package lwsdk.base;
 
-public interface MobileWrapperInterface {
+import org.openqa.selenium.WebElement;
+
+import io.appium.java_client.AppiumDriver;
+
+public interface MobileWrapperInterface{
 	
-	public void click();
+	public boolean click(WebElement ele, AppiumDriver driver);
 	
 	public void scroll();
 	

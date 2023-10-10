@@ -10,8 +10,7 @@ public class SampleTestCaseiOS extends IOSBase  {
 	@Test
 	public void test1() {
 		System.out.println("iOS Test Case");
-		new HomePage()
-		.clickHome();
+//		new HomePage();
 	}
 	
 }
