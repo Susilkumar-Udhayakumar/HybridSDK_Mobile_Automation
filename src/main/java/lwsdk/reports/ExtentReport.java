@@ -17,10 +17,9 @@ import com.aventstack.extentreports.markuputils.Markup;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 
-import lwsdk.base.impl.MobileWrapperImpl;
 import lwsdk.driver.DriverManager;
 
-public class ExtentReport extends MobileWrapperImpl{
+public class ExtentReport {
 	
 	private static ExtentReports extent;
 	private static ThreadLocal<ExtentTest> extentTest = new ThreadLocal<ExtentTest>();
@@ -101,8 +100,7 @@ public class ExtentReport extends MobileWrapperImpl{
 	 * @param failMessage
 	 */
 	public static void fail(Markup m,ITestResult result) {
-		ExtentReport report = new ExtentReport();
-		report.takeScreenShot(result);
+		takeScreenShot(result);
 		extentTest.get().log(Status.FAIL, m);
 	}
 
@@ -121,8 +119,7 @@ public class ExtentReport extends MobileWrapperImpl{
 	 * @param message
 	 */
 	public static void skip(Markup m,ITestResult result) {
-		ExtentReport report = new ExtentReport();
-		report.takeScreenShot(result);
+		takeScreenShot(result);
 		extentTest.get().log(Status.SKIP, m);
 	}
 	
@@ -156,9 +153,9 @@ public class ExtentReport extends MobileWrapperImpl{
 		
 	}
 	
-	private void takeScreenShot(ITestResult result) {
+	private static void takeScreenShot(ITestResult result) {
 		try {
-		TakesScreenshot ts = (TakesScreenshot) driver;
+		TakesScreenshot ts = (TakesScreenshot) DriverManager.getDriver();
 		File source = ts.getScreenshotAs(OutputType.FILE);
 		String filepath = System.getProperty("user.dir") + "/TestReport/FailuresScreens/" + result.getTestClass()
 				+ "/" + result.getName() + ".png";
