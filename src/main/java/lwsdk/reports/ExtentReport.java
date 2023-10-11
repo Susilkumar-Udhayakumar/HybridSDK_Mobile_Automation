@@ -14,7 +14,6 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.Markup;
-import com.aventstack.extentreports.model.Media;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 
@@ -147,8 +146,9 @@ public class ExtentReport {
 	}
 
 	public static void extentTestStart(ITestResult result) {
+		initReports();
 		ExtentTest test = extent.createTest(result.getTestClass().getName() + " :: " + 
-															result.getMethod().getMethodName());
+				result.getMethod().getMethodName());
 		extentTest.set(test);
 		
 	}

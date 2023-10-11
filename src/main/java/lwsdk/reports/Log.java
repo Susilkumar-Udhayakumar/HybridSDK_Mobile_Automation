@@ -22,10 +22,9 @@ public class Log {
 	 * @param description test case
 	 */
 	public static void message(String description) {
-		Thread.currentThread().getName();
 		ExtentReport.info(description);
 		logger.info(description);
-		AllureReport.saveTextLog(description);
+		AllureReport.printTextLog(description);
 	}
 	
 	/**
@@ -47,11 +46,11 @@ public class Log {
 	 */
 	public static void pass(ITestResult result) {
 		Thread.currentThread().getName();
-		String logText = "<b>Test Method "+ result.getMethod().getMethodName() + " Successfull</b>";
-		Markup m = MarkupHelper.createLabel(logText, ExtentColor.GREEN);
+		String logText = "Test Method "+ result.getMethod().getMethodName() + " ran Successfully";
+		Markup m = MarkupHelper.createLabel("<b><i>"+logText+"</i></b>", ExtentColor.GREEN);
 		ExtentReport.pass(m);
-		logger.info(m);
-		AllureReport.saveTextLog("Test Method"+ result.getMethod().getMethodName() +" Successfull");
+		logger.info(logText);
+		AllureReport.printTextLog(logText);
 	}
 	
 	/**
@@ -62,21 +61,22 @@ public class Log {
 	public static void skip(ITestResult result) {
 		
 		String exceptionMessage = Arrays.toString(result.getThrowable().getStackTrace());
-		String skipExceptionMessage = "<details><summary><b><font color=orange>" + 
-				"Exception Occured, click to see details:" + "</font></b></summary>" + 
-				exceptionMessage.replaceAll(",", "<br>") + "</details> \n";
+		String skipExceptionMessage = "Exception Occured, click to see details:";
 		
-		Markup m = MarkupHelper.createLabel(skipExceptionMessage, ExtentColor.YELLOW);
+		Markup m = MarkupHelper.createLabel("<details><summary><b><font color=orange>\" + \n"
+				+ "				\"Exception Occured, click to see details:\" + \"</font></b></summary>\" + \n"
+				+ "				exceptionMessage.replaceAll(\",\", \"<br>\") + \"</details> \\n", ExtentColor.YELLOW);
+		
 		ExtentReport.skip(m,result);
+		logger.info(skipExceptionMessage+" "+exceptionMessage);
+		AllureReport.printSkippedTextLog(skipExceptionMessage+" "+exceptionMessage);
 		
-		AllureReport.saveFailureScreenShot();
-		AllureReport.saveTextLog(m.getMarkup());
-		
-		String logText = "<b>Test Method "+ result.getMethod().getMethodName() + " SKIP</b>";
-		m = MarkupHelper.createLabel(logText, ExtentColor.YELLOW);
+		String logText = "Test Method "+ result.getMethod().getMethodName() + " SKIP";
+		m = MarkupHelper.createLabel("<b>"+logText+"</b>", ExtentColor.YELLOW);
 		ExtentReport.skip(m);
-		logger.info(m);
-		AllureReport.saveTextLog("Test Method"+ result.getMethod().getMethodName() +" SKIP");
+		
+		logger.info(logText);
+		AllureReport.printSkippedTextLog(logText);
 	}
 	
 	/**
@@ -86,22 +86,24 @@ public class Log {
 	 */
 	public static void fail(ITestResult result) {
 		
-		String methodName = result.getMethod().getMethodName();
 		String exceptionMessage = Arrays.toString(result.getThrowable().getStackTrace());
-		String exceptionMsg = "<details><summary><b><font color=red>" + 
-				"Exception Occured, click to see details:" + "</font></b></summary>" + 
-				exceptionMessage.replaceAll(",", "<br>") + "</details> \n";
-		Markup m = MarkupHelper.createLabel(exceptionMsg, ExtentColor.RED);
+		String skipExceptionMessage = "Exception Occured, click to see details:";
+		
+		Markup m = MarkupHelper.createLabel("<details><summary><b><font color=orange>\" + \n"
+				+ "				\"Exception Occured, click to see details:\" + \"</font></b></summary>\" + \n"
+				+ "				exceptionMessage.replaceAll(\",\", \"<br>\") + \"</details> \\n", ExtentColor.RED);
+		
 		ExtentReport.fail(m, result);
 		
-		AllureReport.saveFailureScreenShot();
-		AllureReport.saveTextLog(m.getMarkup());
+		AllureReport.printFailedLogWithScreenShot(skipExceptionMessage+" "+exceptionMessage);
+		logger.info(skipExceptionMessage+" "+exceptionMessage);
 		
-		String logText = "<b>Test Method "+ methodName + " Failed</b>";
-		m = MarkupHelper.createLabel(logText, ExtentColor.RED);
+		String logText = "Test Method "+ result.getMethod().getMethodName() + " Failed";
+		m = MarkupHelper.createLabel("<b>"+logText+"</b>", ExtentColor.RED);
 		ExtentReport.fail(m);
 		
-		logger.error(m);
+		AllureReport.printFailedTextLog(logText);
+		logger.error(logText);
 	}
 	
 	/**
@@ -116,9 +118,11 @@ public class Log {
 		if (e instanceof SkipException) {
 			ExtentReport.skip(e.getMessage());
 			ExtentReport.logStackTrace(e);
+			AllureReport.printSkippedTextLog(e.getMessage());
 		} else {
 			ExtentReport.fail(e.getMessage());
 			ExtentReport.logStackTrace(e);
+			AllureReport.printFailedTextLog(e.getMessage());
 		}
 	}
 	
@@ -129,9 +133,12 @@ public class Log {
 	 * @param testResult
 	 */
 	public static void testStart(ITestResult result) {
-		Thread.currentThread().getName();
+		System.out.println(result.getMethod().getMethodName());
 		ExtentReport.extentTestStart(result);
+		AllureReport.intialMethod(result);
 		logger.info("****             " + "-Test--Case--Started--" + "             *****");
+		logger.info("Test Method Name :"+result.getMethod().getMethodName());
+		logger.info("Test Description :"+result.getMethod().getDescription());
 	}
 	
 	/**

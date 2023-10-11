@@ -1,14 +1,12 @@
 package lwsdk.reports;
 
-import org.testng.IClassListener;
-import org.testng.ITestClass;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
 import lwsdk.utils.FreshReleaseBase;
 
-public class TestListeners implements ITestListener, IClassListener {
+public class TestListeners implements ITestListener {
 	
 	FreshReleaseBase frBase = new FreshReleaseBase();
 	
@@ -40,14 +38,11 @@ public class TestListeners implements ITestListener, IClassListener {
 		frBase.testFreshReleaseFailure(result);	
 	}
 	
-	@Override
-	public void onAfterClass(ITestClass testClass) {
-		frBase.afterFreshReleaseClass();	
-	}
 	
 	@Override
 	public void onFinish(ITestContext context) {
 		Log.testEnd();
+		frBase.afterFreshReleaseClass();
 	}
 
 }
