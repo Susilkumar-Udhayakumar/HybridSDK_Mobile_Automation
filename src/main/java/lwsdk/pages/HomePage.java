@@ -10,6 +10,7 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 import lwsdk.base.impl.AndroidBase;
 import lwsdk.base.impl.AndroidMobileWrapperImpl;
+import lwsdk.base.impl.IOSBase;
 import lwsdk.base.impl.IOSMobileWrapperImpl;
 import lwsdk.base.impl.MobileWrapperImpl;
 import lwsdk.reports.Log;
@@ -22,15 +23,15 @@ public class HomePage {
     public HomePage(AppiumDriver driver) {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
-        if(AndroidBase.platform.equals("Android")) {
+        if(AndroidBase.platform != null  && AndroidBase.platform.equals("Android")) {
         	base = new AndroidMobileWrapperImpl();
-        }else {
+        }else if((IOSBase.platform != null  && IOSBase.platform.equals("iOS"))){
         	base = new IOSMobileWrapperImpl();
         }
     }
 	
     @AndroidFindBy(id="com.freshworks.lwsdk:id/btnShowConversations")
-    @iOSXCUITFindBy(id="com.freshworks.lwsdk:id/btnShowConversations")
+    @iOSXCUITFindBy(xpath ="//XCUIElementTypeButton[@name='Show Conversations']")
     private WebElement conversationButton;
     
     
