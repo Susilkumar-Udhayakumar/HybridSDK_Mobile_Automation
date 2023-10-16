@@ -13,6 +13,7 @@ import lwsdk.base.impl.AndroidMobileWrapperImpl;
 import lwsdk.base.impl.IOSBase;
 import lwsdk.base.impl.IOSMobileWrapperImpl;
 import lwsdk.base.impl.MobileWrapperImpl;
+import lwsdk.reports.Log;
 
 public class HomePage {
 	
@@ -35,6 +36,7 @@ public class HomePage {
     
     
 	public void clickConversationButton() {
+		Log.message("Clicked Conversation Button");
 		Assert.assertTrue(base.click(conversationButton, driver));
 	}
 
