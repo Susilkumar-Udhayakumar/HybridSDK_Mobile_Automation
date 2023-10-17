@@ -2,8 +2,10 @@ package lwsdk.ios.module.testcases;
 
 import org.testng.annotations.Test;
 
-import lwsdk.base.impl.IOSBase;
-import lwsdk.pages.HomePage;
+import lwsdk.app.base.impl.IOSBase;
+import lwsdk.app.pages.HomePage;
+
+
 
 public class SampleTestCaseiOS extends IOSBase  {
 
