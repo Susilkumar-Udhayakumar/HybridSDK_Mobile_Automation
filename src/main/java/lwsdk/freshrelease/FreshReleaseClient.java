@@ -5,16 +5,16 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 
-import com.jayway.restassured.authentication.AuthenticationScheme;
-import com.jayway.restassured.builder.RequestSpecBuilder;
-import com.jayway.restassured.http.ContentType;
-import com.jayway.restassured.internal.http.HTTPBuilder;
-import com.jayway.restassured.response.Response;
-import com.jayway.restassured.specification.RequestSpecification;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
+import io.restassured.authentication.AuthenticationScheme;
+import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.http.ContentType;
+import io.restassured.internal.http.HTTPBuilder;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 import lwsdk.app.base.TestManagementBase;
 import lwsdk.app.logger.Log;
 import lwsdk.freshrelease.endpoints.EndPoints;
@@ -146,7 +146,7 @@ public class FreshReleaseClient implements TestManagementBase {
 
 		spec = new RequestSpecBuilder().setBaseUri(this.baseURI).setBasePath("/" + this.basePath)
 				.setAccept(this.acceptContentType).setContentType(this.contentType)
-				.setAuthentication(new NoAuthScheme()).addHeader("Authorization", this.accessToken).build();
+				.setAuth(new NoAuthScheme()).addHeader("Authorization", this.accessToken).build();
 		return spec;
 	}
 
@@ -227,12 +227,12 @@ public class FreshReleaseClient implements TestManagementBase {
 		}
 		caseRslt = new JSONObject();
 		caseRslt.put("test_run_case_result", caseInfo);
-		Log.message("Sending update Payload ---> " + caseRslt.toJSONString());
+		Log.message("Sending update Payload ---> " + caseRslt.toString());
 		try {
 			testRsltUpdResp = apiClient.POST(
 					EndPoints.FreshRelease.TEST_RUNS + "/" + this.runId + EndPoints.FreshRelease.TEST_CASES + "/"
 							+ this.casePrefix + testResult.get("Case_ID") + EndPoints.FreshRelease.RESULT,
-					caseRslt.toJSONString());
+					caseRslt.toString());
 			validateResponse(testRsltUpdResp, 200);
 		} catch (Exception e) {
 			Log.exception(e);
@@ -264,14 +264,14 @@ public class FreshReleaseClient implements TestManagementBase {
 					if (resultPartion.containsKey("Comment")) {
 						caseResultDetails.put("comment", sanitiseTestResultComment(resultPartion.get("Comment").toString()));
 					}
-					testResultsList.add(caseResultDetails);
+					testResultsList.put(caseResultDetails);
 				}
 				testResultDetails.put("test_run_case_results", testResultsList);
 				try {
-					Log.message("Sending bulk update Payload ---> " + testResultDetails.toJSONString());
+					Log.message("Sending bulk update Payload ---> " + testResultDetails.toString());
 					bulkUpdRsltResp = apiClient.POST(
 							EndPoints.FreshRelease.TEST_RUNS + "/" + this.runId + EndPoints.FreshRelease.RESULTS,
-							testResultDetails.toJSONString());
+							testResultDetails.toString());
 					validateResponse(bulkUpdRsltResp, 202);
 				} catch (Exception e) {
 					Log.exception(e);

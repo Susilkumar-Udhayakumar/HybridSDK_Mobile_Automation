@@ -1,6 +1,6 @@
 package lwsdk.app.base;
 
-import com.jayway.restassured.specification.RequestSpecification;
+import io.restassured.specification.RequestSpecification;
 
 public interface ClientManagementBase {
 	
