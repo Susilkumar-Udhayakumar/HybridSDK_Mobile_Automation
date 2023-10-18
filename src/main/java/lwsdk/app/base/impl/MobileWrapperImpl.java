@@ -27,6 +27,20 @@ public class MobileWrapperImpl implements MobileWrapperInterface {
 
 		return true;
 	}
+	
+	public boolean isDisplay(WebElement ele, AppiumDriver driver, String message) {
+		try {
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+			wait.until(ExpectedConditions.elementToBeClickable(ele));
+			ele.isDisplayed();
+			Log.message(message);
+		} catch (Exception e) {
+			Log.exception(e, driver);
+			return false;
+		}
+
+		return true;
+	}
 
 	public void scroll() {
 		System.out.println("scroll");

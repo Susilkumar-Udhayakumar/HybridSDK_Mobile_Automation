@@ -4,6 +4,7 @@ import org.testng.annotations.Test;
 
 import io.qameta.allure.Epic;
 import lwsdk.app.base.impl.AndroidBase;
+import lwsdk.app.pages.ConversationListPage;
 import lwsdk.app.pages.HomePage;
 import lwsdk.freshrelease.annotation.TestData;
 
@@ -17,6 +18,8 @@ public class SampleTestCaseAndroid extends AndroidBase  {
 	@TestData(testId = 3334)
 	public void testAndroidMethod() {
 		new HomePage(driver)
+		.clickConversationButton();
+		new ConversationListPage(driver)
 		.clickConversationButton();
 		
 	}
