@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 
 import io.qameta.allure.Epic;
 import lwsdk.app.base.impl.AndroidBase;
+import lwsdk.app.pages.ConversationListPage;
 import lwsdk.app.pages.HomePage;
 import lwsdk.freshrelease.annotation.TestData;
 
@@ -15,8 +16,9 @@ public class SampleTestCaseAndroid extends AndroidBase  {
 	@Test(description = "To check description display", groups = {"smoke"})
 	@TestData(testId = 3334)
 	public void testAndroidMethod() {
-		System.out.println("Syso testAndroidMethod");
 		new HomePage(driver)
+		.clickConversationButton();
+		new ConversationListPage(driver)
 		.clickConversationButton();
 		
 	}

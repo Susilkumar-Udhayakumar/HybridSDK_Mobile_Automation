@@ -17,6 +17,7 @@ import com.aventstack.extentreports.markuputils.Markup;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 
+import io.appium.java_client.AppiumDriver;
 import lwsdk.app.base.impl.MobileWrapperImpl;
 import lwsdk.app.logger.Log;
 
@@ -100,9 +101,9 @@ public class ExtentReport extends MobileWrapperImpl{
 	 *
 	 * @param failMessage
 	 */
-	public static void fail(Markup m,ITestResult result) {
+	public static void fail(Markup m, AppiumDriver drivers) {
 		ExtentReport report = new ExtentReport();
-		report.takeScreenShot(result);
+		report.takeScreenShot(drivers);
 		extentTest.get().log(Status.FAIL, m);
 	}
 
@@ -120,9 +121,9 @@ public class ExtentReport extends MobileWrapperImpl{
 	 *
 	 * @param message
 	 */
-	public static void skip(Markup m,ITestResult result) {
+	public static void skip(Markup m,ITestResult result, AppiumDriver drivers) {
 		ExtentReport report = new ExtentReport();
-		report.takeScreenShot(result);
+		report.takeScreenShot(result,drivers);
 		extentTest.get().log(Status.SKIP, m);
 	}
 	
@@ -147,6 +148,22 @@ public class ExtentReport extends MobileWrapperImpl{
 			extentTest.get().log(Status.FAIL, "<div class=\"stacktrace\">" + t.getLocalizedMessage() + "</div>");
 		}
 	}
+	
+	/**
+	 * To print the stack trace of the given error/exception
+	 *
+	 * @param t
+	 */
+	public static void logStackTrace(Throwable t, AppiumDriver drivers) {
+		ExtentReport report = new ExtentReport();
+		if (t instanceof SkipException) {
+			extentTest.get().log(Status.SKIP, "<div class=\"stacktrace\">" + t.getLocalizedMessage() + "</div>");
+			report.takeScreenShot(drivers);
+		} else {
+			extentTest.get().log(Status.FAIL, "<div class=\"stacktrace\">" + t.getLocalizedMessage() + "</div>");
+			report.takeScreenShot(drivers);
+		}
+	}
 
 	public static void extentTestStart(ITestResult result) {
 		initReports();
@@ -156,15 +173,31 @@ public class ExtentReport extends MobileWrapperImpl{
 		
 	}
 	
-	private void takeScreenShot(ITestResult result) {
+	private void takeScreenShot(ITestResult result, AppiumDriver drivers) {
 		try {
-		TakesScreenshot ts = (TakesScreenshot) driver;
-		File source = ts.getScreenshotAs(OutputType.FILE);
-		String filepath = System.getProperty("user.dir") + "/TestReport/FailuresScreens/" + result.getTestClass()
-				+ "/" + result.getName() + ".png";
+			TakesScreenshot ts = (TakesScreenshot) drivers;
+			File source = ts.getScreenshotAs(OutputType.FILE);
+			String filepath = System.getProperty("user.dir") + "/TestReport/FailuresScreens/" + result.getTestClass()
+					+ "/" + result.getName() + ".png";
+			
+			FileUtils.copyFile(source, new File(filepath));
+			extentTest.get().addScreenCaptureFromPath(filepath);
 		
-		FileUtils.copyFile(source, new File(filepath));
-		extentTest.get().addScreenCaptureFromPath(filepath);
+		} catch (IOException e) {
+			Log.exception(e);
+		}
+	}
+	
+	private void takeScreenShot(AppiumDriver drivers) {
+		try {
+			TakesScreenshot ts = (TakesScreenshot) drivers;
+			File source = ts.getScreenshotAs(OutputType.FILE);
+			String filepath = System.getProperty("user.dir") + "/TestReport/FailuresScreens/" + drivers.getTitle()
+					+ "/" + drivers.getTitle() + ".png";
+			
+			FileUtils.copyFile(source, new File(filepath));
+			extentTest.get().addScreenCaptureFromPath(filepath);
+		
 		} catch (IOException e) {
 			Log.exception(e);
 		}

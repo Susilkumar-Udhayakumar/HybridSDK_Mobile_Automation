@@ -1,13 +1,11 @@
 package lwsdk.app.pages;
 
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
 
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 import lwsdk.app.base.impl.AndroidBase;
 import lwsdk.app.base.impl.AndroidMobileWrapperImpl;
 import lwsdk.app.base.impl.IOSBase;
@@ -15,12 +13,12 @@ import lwsdk.app.base.impl.IOSMobileWrapperImpl;
 import lwsdk.app.base.impl.MobileWrapperImpl;
 import lwsdk.app.logger.Log;
 
-public class HomePage {
+public class ConversationListPage {
 	
 	public AppiumDriver driver;
 	public MobileWrapperImpl base;
 	
-    public HomePage(AppiumDriver driver) {
+    public ConversationListPage(AppiumDriver driver) {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
         if(AndroidBase.platform != null  && AndroidBase.platform.equals("Android")) {
@@ -30,13 +28,12 @@ public class HomePage {
         }
     }
 	
-    @AndroidFindBy(id="com.freshworks.lwsdk:id/btnShowConversations")
-    @iOSXCUITFindBy(xpath ="//XCUIElementTypeButton[@name='Show Conversations']")
-    private WebElement conversationButton;
-    
+   @FindBy(xpath ="//div[contains(text(),'Robin')]")
+    private WebElement channelWelcomeMsgTxt;
     
 	public void clickConversationButton() {
-		Log.LogAssertTrue(base.click(conversationButton, driver, "Clicked Conversation Method"), "Conversation button clicked successfully", driver);
+		base.isDisplay(channelWelcomeMsgTxt, driver, "Channel welcome message text displayed");
+		Log.LogAssertTrue(base.click(channelWelcomeMsgTxt, driver, "Clicked Channel Text"), "Channel clicked successfully", driver);
 	}
 
 }

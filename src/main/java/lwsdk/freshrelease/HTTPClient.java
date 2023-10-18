@@ -5,10 +5,9 @@ import java.net.URISyntaxException;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-import com.jayway.restassured.RestAssured;
-import com.jayway.restassured.response.Response;
-import com.jayway.restassured.specification.RequestSpecification;
-
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 import lwsdk.app.logger.Log;
 
 public class HTTPClient {
@@ -33,7 +32,7 @@ public class HTTPClient {
 		Response response;
 
 		Log.message("Sending POST Request... URL: ' " + url + " '. Body '" + body + "'");
-		response = RestAssured.given().specification(this.spec).body(body).post(new URI(url));
+		response = RestAssured.given().spec(this.spec).body(body).post(new URI(url));
 		Log.message("POST Request sent. Status Code: " + response.getStatusCode() + ". Time taken to get response: "
 				+ response.getTimeIn(TimeUnit.SECONDS) + " second(s)");
 		Log.message("Response: " + response.asString());
