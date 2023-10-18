@@ -1,6 +1,7 @@
 package lwsdk.app.base.impl;
 
 import java.time.Duration;
+import java.util.Properties;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -13,6 +14,7 @@ import lwsdk.app.logger.Log;
 public class MobileWrapperImpl implements MobileWrapperInterface {
 	
 	public AppiumDriver driver;
+	public static Properties prop = new Properties();
 	
 	public boolean click(WebElement ele, AppiumDriver driver, String message) {
 		try {
