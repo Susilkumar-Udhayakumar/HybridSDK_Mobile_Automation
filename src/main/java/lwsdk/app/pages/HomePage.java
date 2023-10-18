@@ -36,8 +36,7 @@ public class HomePage {
     
     
 	public void clickConversationButton() {
-		Log.message("Clicked Conversation Button");
-		Assert.assertTrue(base.click(conversationButton, driver));
+		Log.LogAssertTrue(base.click(conversationButton, driver, "Clicked Conversation Method"), "Conversation button clicked successfully", driver);
 	}
 
 }

@@ -16,7 +16,6 @@ public class SampleTestCaseAndroid extends AndroidBase  {
 	@Test(description = "To check description display", groups = {"smoke"})
 	@TestData(testId = 3334)
 	public void testAndroidMethod() {
-		System.out.println("Syso testAndroidMethod");
 		new HomePage(driver)
 		.clickConversationButton();
 		

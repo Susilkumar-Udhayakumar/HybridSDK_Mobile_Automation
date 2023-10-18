@@ -6,6 +6,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.testng.ITestResult;
 
+import io.appium.java_client.AppiumDriver;
 import io.qameta.allure.Allure;
 import io.qameta.allure.model.Status;
 import lwsdk.app.base.impl.MobileWrapperImpl;
@@ -16,10 +17,10 @@ public class AllureReport extends MobileWrapperImpl{
 		Allure.step(message);
 	}
 	
-	public static void printFailedLogWithScreenShot(String message) {
+	public static void printFailedLogWithScreenShot(String message, AppiumDriver drivers) {
 		Allure.step(message, Status.FAILED);
 		AllureReport report = new AllureReport();
-	    Allure.addAttachment("Refer Attachment", report.getScreenShot());
+	    Allure.addAttachment("Refer Attachment", report.getScreenShot(drivers));
 	}
 	
 	public static void printSkippedTextLog(String message) {
@@ -36,7 +37,7 @@ public class AllureReport extends MobileWrapperImpl{
 		Allure.description(result.getMethod().getDescription());
 	}
 	
-	private ByteArrayInputStream getScreenShot() {
-		return new ByteArrayInputStream(((TakesScreenshot)  driver).getScreenshotAs(OutputType.BYTES));
+	private ByteArrayInputStream getScreenShot(AppiumDriver drivers) {
+		return new ByteArrayInputStream(((TakesScreenshot)  drivers).getScreenshotAs(OutputType.BYTES));
 	}
 }
