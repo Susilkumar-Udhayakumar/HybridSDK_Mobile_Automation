@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+	<parameter name="deviceName"
+		value="C42BD6FF-E522-4EE4-A551-32EEAE7EC5F9"></parameter>
+	<parameter name="url"
+		value="http://127.0.0.1:4723"></parameter>
+	<parameter name="exec"
+		value="local"></parameter>
+	<parameter name="appName"
+		value="hybridsdk-ios.app"></parameter>
+	<listeners>
+		<listener class-name="lwsdk.app.listeners.TestListeners"></listener>
+	</listeners>
+	<test thread-count="5" name="LighweighSDK">
+		<classes>
+			<class name="lwsdk.ios.module.testcases.SampleTestCaseiOS" />
+		</classes>
+	</test>
+</suite> 
+
