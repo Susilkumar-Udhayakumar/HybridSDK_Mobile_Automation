@@ -10,7 +10,7 @@ import lwsdk.freshrelease.annotation.TestData;
 
 @Listeners(lwsdk.app.listeners.TestListeners.class)
 @Epic("Home Page")
-public class SampleTestCaseAndroid extends AndroidBase  {
+public class SampleTestCaseAndroid2 extends AndroidBase  {
 
 	@Test(description = "To check description display", groups = {"smoke"})
 	@TestData(testId = 3334)
@@ -24,7 +24,7 @@ public class SampleTestCaseAndroid extends AndroidBase  {
 	@Test(description = "To check description display 2", groups = {"smoke"})
 	@TestData(testId = 3334)
 	public void testAndroidMethod2() {
-		System.out.println("Syso testAndroidMethod2");
+		System.out.println("Syso testAndroidMethod");
 		new HomePage(driver)
 		.clickConversationButton();
 		
