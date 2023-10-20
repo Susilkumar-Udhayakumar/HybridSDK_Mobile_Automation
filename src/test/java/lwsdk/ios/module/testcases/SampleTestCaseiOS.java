@@ -5,7 +5,6 @@ import java.util.Set;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
-import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.remote.SupportsContextSwitching;
 import io.qameta.allure.Epic;
@@ -21,19 +20,12 @@ public class SampleTestCaseiOS extends IOSBase  {
 	@Test(description = "To check description display", groups = {"smoke"})
 	@TestData(testId = 3334)
 	public void test1() {
+		driver.findElement(By.xpath("//XCUIElementTypeButton[@name='Allow']")).click();
 		new HomePage(driver)
 		.clickConversationButton();
-		Set<String> contextHandles = ((IOSDriver)driver).getContextHandles();
-
-        // Loop through the available contexts to find the WebView context you want
-        for (String context : contextHandles) {
-            if (context.contains("WEBVIEW")) {
-                // Switch to the WebView context
-                ((SupportsContextSwitching) driver).context(context);
-                break;
-            }
-        }
-        driver.switchTo().frame(driver.findElement(By.name("fc_widget")));
+		
+		driver.findElement(By.xpath("//XCUIElementTypeStaticText[@name=\"Robin's Topic\"]")).click();
+        
         System.out.println(driver.getPageSource());
 		new ConversationListPage(driver)
 		.clickConversationButton();

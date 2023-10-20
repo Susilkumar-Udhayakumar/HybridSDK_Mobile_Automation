@@ -82,7 +82,7 @@ public class DriverManager {
 		sauceOptions.put("appiumVersion", "2.0.0");
 		capabilities.setCapability("sauce:options", sauceOptions);
 
-		AppiumDriver driver = new AndroidDriver(
+		AppiumDriver driver = new IOSDriver(
 			    new URL("https://"+ System.getProperty("SAUCE_USERNAME") + ":"
 		                + System.getProperty("SAUCE_ACCESS_KEY")+url), capabilities
 			);
