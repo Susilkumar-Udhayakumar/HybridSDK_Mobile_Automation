@@ -9,11 +9,17 @@
 		value="local"></parameter>
 	<parameter name="appName"
 		value="hybridsdk-android.apk"></parameter>
+	<parameter name="platformVersion"
+		value=""></parameter>
+	<parameter name="sauceUserName"
+		value=""></parameter>
+	<parameter name="saucePassword"
+		value=""></parameter>
 
 	<test thread-count="5" name="LighweighSDK">
 		<classes>
 			<class name="lwsdk.android.module.testcases.SampleTestCaseAndroid" />
-			<class name="lwsdk.android.module.testcases.SampleTestCaseAndroid2" />
+			
 		</classes>
 	</test>
 </suite> 

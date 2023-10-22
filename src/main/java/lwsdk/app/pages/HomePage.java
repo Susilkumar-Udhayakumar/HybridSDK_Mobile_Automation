@@ -1,8 +1,8 @@
 package lwsdk.app.pages;
 
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
@@ -20,7 +20,11 @@ public class HomePage {
 	public AppiumDriver driver;
 	public MobileWrapperImpl base;
 	
-    public HomePage(AppiumDriver driver) {
+	/**
+	 * Constructor to initialize driver
+	 * @param driver
+	 */
+	public HomePage(AppiumDriver driver) {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
         if(AndroidBase.platform != null  && AndroidBase.platform.equals("Android")) {
@@ -34,9 +38,36 @@ public class HomePage {
     @iOSXCUITFindBy(xpath ="//XCUIElementTypeButton[@name='Show Conversations']")
     private WebElement conversationButton;
     
+    @iOSXCUITFindBy(xpath ="//XCUIElementTypeButton[@name='Allow']")
+    private WebElement allowButton;
     
-	public void clickConversationButton() {
-		Log.LogAssertTrue(base.click(conversationButton, driver, "Clicked Conversation Method"), "Conversation button clicked successfully", driver);
+    @FindBy(name = "fc_widget")
+	private WebElement webViewFrame;
+    
+    /**
+	 * Method to click allow button
+	 */
+    public HomePage clickAllowButton() {
+    	base.click(allowButton, driver, "Clicked Allow Button");
+		return this;
+	}
+    
+    /**
+	 * Method to click conversation button in home page
+	 */
+	public HomePage clickConversationButton() {
+		Log.logAssertTrue(base.click(conversationButton, driver, "Clicked Conversation Method"), "Conversation button clicked successfully", driver);
+		return this;
+	}
+	
+	/**
+	 * Method to switch iframe in web view
+	 */
+	public HomePage switchToWebViewWithFrame() {
+		base.staticWait(15000);
+		base.switchToWebView(driver);
+		base.switchToFrame(driver, webViewFrame);
+		return this;
 	}
 
 }

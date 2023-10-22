@@ -6,8 +6,16 @@ public interface ClientManagementBase {
 	
 	RequestSpecification generateClientSpecification();
 
+	/**
+	 * Method to set request specification 
+	 * @param spec
+	 */
 	void setSpec(RequestSpecification spec);
 
+	/**
+	 * Method to get request specification
+	 * @return
+	 */
 	RequestSpecification getSpec();
 
 }

@@ -12,6 +12,7 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Parameters;
 
 import lwsdk.app.driver.DriverManager;
+import lwsdk.app.logger.Log;
 
 public class AndroidBase extends AndroidMobileWrapperImpl {
 	
@@ -20,31 +21,69 @@ public class AndroidBase extends AndroidMobileWrapperImpl {
 	public DriverManager driverManager;
 	
 	
+	/**
+	 * Method to be triggered before test suite
+	 */
 	@BeforeSuite(groups = {"smoke"})
-	public void beforeSuite() throws FileNotFoundException, IOException{
-		System.out.println("Before Suite");
-		platform = "Android";
-		//Properties Loading
-		prop.load(new FileInputStream(new File(System.getProperty("user.dir") + "/src/test/resources/android.properties")));
-		
-	}
-	@Parameters({"deviceName","url","exec","appName"})
-	@BeforeMethod(groups = {"smoke"})
-	public void beforeMethod(String deviceName, String url,String exec, String appName) throws MalformedURLException {
-		System.out.println("Before Method");
-		//Driver Initialization
-		driverManager = new DriverManager();
-		if(exec.equals("local")) {
-			driver = driverManager.setAndriodDriverLocal(deviceName,url,appName);
-		}else if(exec.equals("saucelabs")) {
-			driver = driverManager.setAndroidDriverSauceLabs(deviceName,url,appName);
+	public void beforeSuite(){
+		try {
+			Log.info("Before Suite");
+			platform = "Android";
+			prop.load(new FileInputStream(new File(System.getProperty("user.dir") + "/src/test/resources/android.properties")));
 		}
+		catch(FileNotFoundException e) {
+			Log.info("File missing");
+			Log.info(e.getLocalizedMessage());
+		}
+		catch(IOException e) {
+			Log.info("Issue in input output operation");
+			Log.info(e.getLocalizedMessage());
+		}		
 	}
 	
+	/**
+	 * Method to be triggered before test method
+	 * 
+	 * @param deviceName - device id for local testing and device name for sauce lab
+	 * @param url - local host url / sauce lab url
+	 * @param exec - execution environment local / saucelab
+	 * @param appName - app name 
+	 */
+	@Parameters({"deviceName","url","exec","appName","platformVersion","sauceUserName","saucePassword"})
+	@BeforeMethod(groups = {"smoke"})
+	public void beforeMethod(String deviceName, String url, String exec, String appName, String platformVersion, String sauceUserName, String saucePassword){
+		
+		try {
+			Log.info("Before Method");
+			driverManager = new DriverManager();
+			if(exec.equals("local")) {
+				driver = driverManager.setAndriodDriverLocal(deviceName,url,appName);
+			}else if(exec.equals("saucelabs")) {
+				driver = driverManager.setAndroidDriverSauceLabs(deviceName,url,appName,platformVersion,sauceUserName,saucePassword);
+			}
+		}
+		catch(MalformedURLException e) {
+			Log.message("Malformed URl exception occured");
+			Log.exception(e);
+		}
+		catch(Exception e) {
+			Log.exception(e);
+		}
+		
+	}
+	
+	/**
+	 * Method which triggered after test
+	 */
 	@AfterMethod(groups = {"smoke"})
 	public void afterMethod() {
-		System.out.println("After Method");
-		driver.quit();
+		try {
+			Log.message("After Method");
+			driver.quit();
+		}
+		catch(Exception e) {
+			Log.exception(e);
+		}
 	}
 
 }

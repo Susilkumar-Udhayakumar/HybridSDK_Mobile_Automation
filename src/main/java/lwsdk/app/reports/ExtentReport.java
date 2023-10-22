@@ -26,6 +26,9 @@ public class ExtentReport extends MobileWrapperImpl{
 	private static ExtentReports extent;
 	private static ThreadLocal<ExtentTest> extentTest = new ThreadLocal<ExtentTest>();
 	
+	/**
+	 * Method to set initial setup for extent report
+	 */
 	public static void initReports() {
 		if (Objects.isNull(extent)) {
 			extent = new ExtentReports();
@@ -38,15 +41,22 @@ public class ExtentReport extends MobileWrapperImpl{
 		}
 	}
 
+	/**
+	 * Method to publish extent report
+	 */
 	public static void flushReports() {
 
 		if (Objects.nonNull(extent)) {
 			extent.flush();
 		}
-
 		extentTest.remove();
 	}
 
+	/**
+	 * Method to create test report for extent 
+	 * 
+	 * @param testCaseName
+	 */
 	public static void createTest(String testCaseName) {
 		extentTest.set(extent.createTest(testCaseName));
 	}
@@ -165,6 +175,11 @@ public class ExtentReport extends MobileWrapperImpl{
 		}
 	}
 
+	/**
+	 * Method to start capturing extent report 
+	 * 
+	 * @param result
+	 */
 	public static void extentTestStart(ITestResult result) {
 		initReports();
 		ExtentTest test = extent.createTest(result.getTestClass().getName() + " :: " + 
@@ -173,6 +188,12 @@ public class ExtentReport extends MobileWrapperImpl{
 		
 	}
 	
+	/**
+	 * Method to capture screenshot with result method name
+	 * 
+	 * @param result
+	 * @param drivers
+	 */
 	private void takeScreenShot(ITestResult result, AppiumDriver drivers) {
 		try {
 			TakesScreenshot ts = (TakesScreenshot) drivers;
@@ -188,6 +209,11 @@ public class ExtentReport extends MobileWrapperImpl{
 		}
 	}
 	
+	/**
+	 * Method to capture screenshot
+	 * 
+	 * @param drivers
+	 */
 	private void takeScreenShot(AppiumDriver drivers) {
 		try {
 			TakesScreenshot ts = (TakesScreenshot) drivers;

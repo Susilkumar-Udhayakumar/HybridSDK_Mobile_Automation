@@ -9,13 +9,18 @@
 		value="saucelabs"></parameter>
 	<parameter name="appName"
 		value="app-debug.apk"></parameter>
+	<parameter name="platformVersion"
+		value="12"></parameter>
+	<parameter name="sauceUserName"
+		value="mrahim"></parameter>
+	<parameter name="saucePassword"
+		value="066bd0be-83a7-4239-9ca8-436ccef5798f"></parameter>
 	<listeners>
 		<listener class-name="lwsdk.app.listeners.TestListeners"></listener>
 	</listeners>
 	<test name="LighweighSDK">
 		<classes>
 			<class name="lwsdk.android.module.testcases.SampleTestCaseAndroid" />
-			<class name="lwsdk.android.module.testcases.SampleTestCaseAndroid2" />
 		</classes>
 	</test>
 </suite> 

@@ -14,7 +14,6 @@ public class HTTPClient {
 	private RequestSpecification spec;
 
 	public HTTPClient(RequestSpecification spec) {
-		// TODO Auto-generated constructor stub
 		Log.message("Instantiating HTTPClient with Client Request Specification");
 		this.spec = spec;
 	}
@@ -29,13 +28,21 @@ public class HTTPClient {
 	 * @return - response of POST API method execution
 	 */
 	public Response POST(String url, String body) throws URISyntaxException {
-		Response response;
-
-		Log.message("Sending POST Request... URL: ' " + url + " '. Body '" + body + "'");
-		response = RestAssured.given().spec(this.spec).body(body).post(new URI(url));
-		Log.message("POST Request sent. Status Code: " + response.getStatusCode() + ". Time taken to get response: "
-				+ response.getTimeIn(TimeUnit.SECONDS) + " second(s)");
-		Log.message("Response: " + response.asString());
+		Response response =null;
+		try {
+			Log.message("Sending POST Request... URL: ' " + url + " '. Body '" + body + "'");
+			response = RestAssured.given().spec(this.spec).body(body).post(new URI(url));
+			Log.message("POST Request sent. Status Code: " + response.getStatusCode() + ". Time taken to get response: "
+					+ response.getTimeIn(TimeUnit.SECONDS) + " second(s)");
+			Log.message("Response: " + response.asString());
+		}
+		catch(URISyntaxException e) {
+			Log.message("Url exception occured");
+			Log.exception(e);
+		}
+		catch(Exception e) {
+			Log.exception(e);
+		}
 		return response;
 	}
 
@@ -48,14 +55,22 @@ public class HTTPClient {
 	 * 
 	 * @return - response of PUT API method execution
 	 */
-	public Response PUT(String url, String body) throws URISyntaxException {
-		Response response;
-
-		Log.message("Sending PUT Request... URL: ' " + url + " '. Body '" + body + "'");
-		response = RestAssured.given().spec(this.spec).body(body).put(new URI(url));
-		Log.message("PUT Request sent. Status Code: " + response.getStatusCode() + ". Time taken to get response: "
-				+ response.getTimeIn(TimeUnit.SECONDS) + " second(s)");
-		Log.message("Response: " + response.asString());
+	public Response PUT(String url, String body) {
+		Response response =null;
+		try {
+			Log.message("Sending PUT Request... URL: ' " + url + " '. Body '" + body + "'");
+			response = RestAssured.given().spec(this.spec).body(body).put(new URI(url));
+			Log.message("PUT Request sent. Status Code: " + response.getStatusCode() + ". Time taken to get response: "
+					+ response.getTimeIn(TimeUnit.SECONDS) + " second(s)");
+			Log.message("Response: " + response.asString());
+		}
+		catch(URISyntaxException e) {
+			Log.message("Url exception occured");
+			Log.exception(e);
+		}
+		catch(Exception e) {
+			Log.exception(e);
+		}
 		return response;
 	}
 
@@ -66,14 +81,22 @@ public class HTTPClient {
 	 * 
 	 * @return - response of PUT API method execution
 	 */
-	public Response PUT(String url) throws URISyntaxException {
-		Response response;
-
-		Log.message("Sending PUT Request... URL: ' " + url);
-		response = RestAssured.given().spec(this.spec).put(new URI(url));
-		Log.message("PUT Request sent. Status Code: " + response.getStatusCode() + ". Time taken to get response: "
-				+ response.getTimeIn(TimeUnit.SECONDS) + " second(s)");
-		Log.message("Response: " + response.asString());
+	public Response PUT(String url) {
+		Response response =null;
+		try {
+			Log.message("Sending PUT Request... URL: ' " + url);
+			response = RestAssured.given().spec(this.spec).put(new URI(url));
+			Log.message("PUT Request sent. Status Code: " + response.getStatusCode() + ". Time taken to get response: "
+					+ response.getTimeIn(TimeUnit.SECONDS) + " second(s)");
+			Log.message("Response: " + response.asString());
+		}
+		catch(URISyntaxException e) {
+			Log.message("Url exception occured");
+			Log.exception(e);
+		}
+		catch(Exception e) {
+			Log.exception(e);
+		}
 		return response;
 	}
 
@@ -86,14 +109,22 @@ public class HTTPClient {
 	 * 
 	 * @return - response of PATCH API method execution
 	 */
-	public Response PATCH(String url, String body) throws URISyntaxException {
-		Response response;
-
-		Log.message("Sending PATCH Request... URL: ' " + url + " '. Body '" + body + "'");
-		response = RestAssured.given().spec(this.spec).body(body).patch(new URI(url));
-		Log.message("PATCH Request sent. Status Code: " + response.getStatusCode() + ". Time taken to get response: "
-				+ response.getTimeIn(TimeUnit.SECONDS) + " second(s)");
-		Log.message("Response: " + response.asString());
+	public Response PATCH(String url, String body) {
+		Response response =null;
+		try {
+			Log.message("Sending PATCH Request... URL: ' " + url + " '. Body '" + body + "'");
+			response = RestAssured.given().spec(this.spec).body(body).patch(new URI(url));
+			Log.message("PATCH Request sent. Status Code: " + response.getStatusCode() + ". Time taken to get response: "
+					+ response.getTimeIn(TimeUnit.SECONDS) + " second(s)");
+			Log.message("Response: " + response.asString());
+		}
+		catch(URISyntaxException e) {
+			Log.message("Url exception occured");
+			Log.exception(e);
+		}
+		catch(Exception e) {
+			Log.exception(e);
+		}
 		return response;
 	}
 
@@ -104,14 +135,22 @@ public class HTTPClient {
 	 * 
 	 * @return - response of GET API method execution
 	 */
-	public Response GET(String url) throws URISyntaxException {
-		Response response;
-
-		Log.message("Sending GET Request... URL: ' " + url + " '");
-		response = RestAssured.given().spec(this.spec).get(new URI(url));
-		Log.message("GET Request sent. Status Code: " + response.getStatusCode() + ". Time taken to get response: "
-				+ response.getTimeIn(TimeUnit.SECONDS) + " second(s)");
-		Log.message("Response: " + response.asString());
+	public Response GET(String url){
+		Response response =null;
+		try {
+			Log.message("Sending GET Request... URL: ' " + url + " '");
+			response = RestAssured.given().spec(this.spec).get(new URI(url));
+			Log.message("GET Request sent. Status Code: " + response.getStatusCode() + ". Time taken to get response: "
+					+ response.getTimeIn(TimeUnit.SECONDS) + " second(s)");
+			Log.message("Response: " + response.asString());
+		}
+		catch(URISyntaxException e) {
+			Log.message("Url exception occured");
+			Log.exception(e);
+		}
+		catch(Exception e) {
+			Log.exception(e);
+		}
 		return response;
 	}
 
@@ -125,13 +164,17 @@ public class HTTPClient {
 	 * @return - response of GET API method execution
 	 */
 	public Response GET(String url, Map<String, String> queryString) {
-		Response response;
-
-		Log.message("Sending GET Request... URL: ' " + url + " '");
-		response = RestAssured.given().spec(this.spec).queryParams(queryString).get(url);
-		Log.message("GET Request sent. Status Code: " + response.getStatusCode() + ". Time taken to get response: "
-				+ response.getTimeIn(TimeUnit.SECONDS) + " second(s)");
-		Log.message("Response: " + response.asString());
+		Response response =null;
+		try {
+			Log.message("Sending GET Request... URL: ' " + url + " '");
+			response = RestAssured.given().spec(this.spec).queryParams(queryString).get(url);
+			Log.message("GET Request sent. Status Code: " + response.getStatusCode() + ". Time taken to get response: "
+					+ response.getTimeIn(TimeUnit.SECONDS) + " second(s)");
+			Log.message("Response: " + response.asString());
+		}
+		catch(Exception e) {
+			Log.exception(e);
+		}
 		return response;
 	}
 
@@ -144,13 +187,22 @@ public class HTTPClient {
 	 * 
 	 * @return - response of DELETE API method execution
 	 */
-	public Response DELETE(String url) throws URISyntaxException {
-		Response response;
-
-		Log.message("Sending DELETE Request... URL: ' " + url + " '");
-		response = RestAssured.given().spec(this.spec).delete(new URI(url));
-		Log.message("DELETE Request sent. Status Code: " + response.getStatusCode()
-				+ ". Time taken to get response: " + response.getTimeIn(TimeUnit.SECONDS) + " second(s)");
+	public Response DELETE(String url) {
+		Response response =null;
+		try {
+			Log.message("Sending DELETE Request... URL: ' " + url + " '");
+			response = RestAssured.given().spec(this.spec).delete(new URI(url));
+			Log.message("DELETE Request sent. Status Code: " + response.getStatusCode()
+					+ ". Time taken to get response: " + response.getTimeIn(TimeUnit.SECONDS) + " second(s)");
+			Log.message("Response: " + response.asString());
+		}
+		catch(URISyntaxException e) {
+			Log.message("Url exception occured");
+			Log.exception(e);
+		}
+		catch(Exception e) {
+			Log.exception(e);
+		}
 		return response;
 	}
 }

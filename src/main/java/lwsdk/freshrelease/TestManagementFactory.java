@@ -3,6 +3,12 @@ package lwsdk.freshrelease;
 import lwsdk.app.base.TestManagementBase;
 
 public class TestManagementFactory {
+	/**
+	 * Test management base method to client details
+	 * 
+	 * @param client
+	 * @return
+	 */
 	public static TestManagementBase getClient(TestManagementClient client) {
 		switch (client) {
 		case FRESHRELEASE:

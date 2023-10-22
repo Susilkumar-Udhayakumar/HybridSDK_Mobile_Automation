@@ -6,6 +6,11 @@ import java.util.List;
 public enum TestManagementClient {
 	FRESHRELEASE;
 
+	/**
+	 * Method to get supported clients
+	 * 
+	 * @return list of clients
+	 */
 	public static List<String> getSupportedClients() {
 		List<String> clients;
 

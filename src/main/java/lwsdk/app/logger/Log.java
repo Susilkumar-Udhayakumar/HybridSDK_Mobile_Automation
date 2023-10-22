@@ -33,6 +33,15 @@ public class Log {
 	}
 	
 	/**
+	 * message print the test case custom message in the log (level=info)
+	 *
+	 * @param description test case
+	 */
+	public static void info(String description) {
+		logger.info(description);
+	}
+	
+	/**
 	 * message print the test case custom message in the log (level=debug) depends on
 	 * message print the test case custom message in the log
 	 *
@@ -179,7 +188,7 @@ public class Log {
 		}
 	}
 	
-	public static void LogAssertTrue(boolean condition, String message, AppiumDriver driver) {
+	public static void logAssertTrue(boolean condition, String message, AppiumDriver driver) {
 		if(condition) {
 			Assert.assertTrue(condition, message);
 			pass(message);
@@ -190,7 +199,7 @@ public class Log {
 		
 	}
 	
-	public static void LogAssertFalse(boolean condition, String message, AppiumDriver driver) {
+	public static void logAssertFalse(boolean condition, String message, AppiumDriver driver) {
 		if(!condition) {
 			Assert.assertFalse(condition, message);
 			pass(message);
@@ -201,7 +210,7 @@ public class Log {
 		
 	}
 	
-	public static void LogAssertEqual(boolean actual, boolean expected, String message, String failMessage, AppiumDriver driver) {
+	public static void logAssertEqual(boolean actual, boolean expected, String message, String failMessage, AppiumDriver driver) {
 		if(Boolean.valueOf(actual).equals(Boolean.valueOf(expected))) {
 			Assert.assertEquals(actual, expected, message);
 			pass(message);

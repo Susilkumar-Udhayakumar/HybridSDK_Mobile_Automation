@@ -9,6 +9,12 @@
 		value="saucelabs"></parameter>
 	<parameter name="appName"
 		value="hybridsdk-ios.ipa"></parameter>
+	<parameter name="platformVersion"
+		value="16.7"></parameter>
+	<parameter name="sauceUserName"
+		value="mrahim"></parameter>
+	<parameter name="saucePassword"
+		value="066bd0be-83a7-4239-9ca8-436ccef5798f"></parameter>
 	<listeners>
 		<listener class-name="lwsdk.app.listeners.TestListeners"></listener>
 	</listeners>
