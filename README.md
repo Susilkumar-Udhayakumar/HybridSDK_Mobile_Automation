@@ -150,7 +150,7 @@ With these configurations, you can tailor your test execution based on the TestN
 1. **Run into sauce lab from local**
   - Open terminal
   - Go to project location
-  - Run maven command `mvn clean test -DsuiteXmlFile=androidsaucelabs.xml -DtestType=smoke -DCLOUD_DEVICE_NAME=Samsung_S7_Plus_real_us -DPLATFORM_VERSION=11 -DSAUCE_USERNAME=***** -DSAUCE_ACCESS_KEY=**** -DRUN_ID=95790` 
+  - Run maven command `mvn clean test -DsuiteXmlFile=androidsaucelabs.xml -DtestType=smoke -DCLOUD_DEVICE_NAME=Samsung_S7_Plus_real_us -DPLATFORM_VERSION=11 -DSAUCE_USERNAME=***** -DSAUCE_ACCESS_KEY=**** ` 
 
 ## Reporting
 
