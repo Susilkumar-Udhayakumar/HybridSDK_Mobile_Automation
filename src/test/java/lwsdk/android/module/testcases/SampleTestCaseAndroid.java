@@ -1,8 +1,5 @@
 package lwsdk.android.module.testcases;
 
-import java.util.Set;
-
-import org.openqa.selenium.By;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 

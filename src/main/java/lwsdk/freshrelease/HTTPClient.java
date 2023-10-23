@@ -27,7 +27,7 @@ public class HTTPClient {
 	 * 
 	 * @return - response of POST API method execution
 	 */
-	public Response POST(String url, String body) throws URISyntaxException {
+	public Response POST(String url, String body) {
 		Response response =null;
 		try {
 			Log.message("Sending POST Request... URL: ' " + url + " '. Body '" + body + "'");

@@ -48,9 +48,9 @@ public class IOSBase extends IOSMobileWrapperImpl {
 	 * @param exec - execution environment local / saucelab
 	 * @param appName - app name 
 	 */
-	@Parameters({"deviceName","url","exec","appName","platformVersion","sauceUserName","saucePassword"})
+	@Parameters({"deviceName","url","exec","appName"})
 	@BeforeMethod(groups = {"smoke"})
-	public void beforeMethod(String deviceName, String url,String exec, String appName, String platformVersion, String sauceUserName, String saucePassword){
+	public void beforeMethod(String deviceName, String url,String exec, String appName){
 		
 		try {
 			Log.info("Before Method");
@@ -58,7 +58,7 @@ public class IOSBase extends IOSMobileWrapperImpl {
 			if (exec.equals("local")) {
 				driver = driverManager.setiOSDriverLocal(deviceName, url, appName);
 			} else if (exec.equals("saucelabs")) {
-				driver = driverManager.setiOSDriverSauceLabs(deviceName,url, appName,platformVersion,sauceUserName,saucePassword);
+				driver = driverManager.setiOSDriverSauceLabs(deviceName,url, appName);
 			}
 		}
 		catch(MalformedURLException e) {

@@ -9,12 +9,7 @@
 		value="local"></parameter>
 	<parameter name="appName"
 		value="hybridsdk-ios.app"></parameter>
-	<parameter name="platformVersion"
-		value=""></parameter>
-	<parameter name="sauceUserName"
-		value=""></parameter>
-	<parameter name="saucePassword"
-		value=""></parameter>
+
 	<listeners>
 		<listener class-name="lwsdk.app.listeners.TestListeners"></listener>
 	</listeners>
