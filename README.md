@@ -4,15 +4,13 @@
 
 - [Introduction](#introduction)
 - [Features](#features)
+- [Architecture](#architecture)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
 - [Getting Started](#getting-started)
 - [Configuration](#configuration)
-- [Writing Test Cases](#writing-test-cases)
 - [Running Tests](#running-tests)
 - [Reporting](#reporting)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Introduction
 
@@ -45,8 +43,7 @@ This Appium Framework comes with a comprehensive set of features to simplify and
 
 ## Architecture
 
-![Architecture diagram](https://github.com/Susilkumar-Udhayakumar/HybridSDK_Mobile_Automation/assets/108650907/3d0709f1-7830-488a-99e2-a94cde28e09d)
-
+![Architecture Diagram](https://github.com/Susilkumar-Udhayakumar/HybridSDK_Mobile_Automation/assets/108650907/d5242842-f4fc-4faf-9bd5-d6c7fafb71dd)
 
 ## Prerequisites
 
@@ -111,12 +108,12 @@ To configure your MyAppium Framework project, follow these steps:
    - Update the TestNG XML file you want to run and specify the type of test you want to execute (e.g., smoke, sanity, regression).
    - This can be configured as shown in the example image below:
 
-  ![Update Testng xml](https://github.com/Susilkumar-Udhayakumar/HybridSDK_Mobile_Automation/assets/108650907/e0b9c84b-002c-49ef-87c9-016e2751d1ac)
-
+  ![Testng xml update](https://github.com/Susilkumar-Udhayakumar/HybridSDK_Mobile_Automation/assets/108650907/c3445d3b-ad93-4ed9-92c5-45b6e59148a2)
 
 2. **Sauce Labs Configuration**:
    - To run tests on Sauce Labs, you need to set up two environment variables, `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY`.
    - Configure these environment variables in your local development environment or CI/CD pipeline
+![saucelab configuration](https://github.com/Susilkumar-Udhayakumar/HybridSDK_Mobile_Automation/assets/108650907/7176c856-b3db-45dc-a321-c9dc2ac9bd9f)
 
 
 ## Running Tests
@@ -153,6 +150,49 @@ With these configurations, you can tailor your test execution based on the TestN
 1. **Run into sauce lab from local**
   - Open terminal
   - Go to project location
-  - Run maven command `mvn clean test -DsuiteXmlFile=androidsaucelabs.xml -DtestType=smoke -DCLOUD_DEVICE_NAME=Samsung_S7_Plus_real_us -DPLATFORM_VERSION=11 -DSAUCE_USERNAME=***** -DSAUCE_ACCESS_KEY=**** -DRUN_ID=95790` 
+  - Run maven command `mvn clean test -DsuiteXmlFile=androidsaucelabs.xml -DtestType=smoke -DCLOUD_DEVICE_NAME=Samsung_S7_Plus_real_us -DPLATFORM_VERSION=11 -DSAUCE_USERNAME=***** -DSAUCE_ACCESS_KEY=**** ` 
 
+## Reporting
 
+### Logs
+
+For tracing logs log4j is used, call below methods for logging information. Logged information are traced inside log folder
+   - info() for tracing launch and termination details of test and api.
+   - debug() for logging debug information such as api response string and action result
+   - message() for logging all test step
+   - pass() for logging success test result
+   - fail() for logging failed test result
+   - skip() for logging skipped test result
+
+sample log report:
+![Sample log report](https://github.com/Susilkumar-Udhayakumar/HybridSDK_Mobile_Automation/assets/108650907/7004efd0-c668-440e-ab88-0f9d8650153f)
+
+### Extent Report
+
+Extent reports are setup and generations are managed by testlistner, After completion of execution reports are tracked under Extent Report folder. Use below method for logging addtion step information
+   - message() for tracing test step
+   - logAssertTrue() for assert positive flow
+   - logAssertFalse() for asserting negative flow
+   - logAssertEqual() for comparision
+
+Sample extent report:
+![Sample extent report](https://github.com/Susilkumar-Udhayakumar/HybridSDK_Mobile_Automation/assets/108650907/0849dff6-fdbe-4123-96f8-6c60e0b6dd75)
+
+### Aluure Report
+
+Allure reports are setup and generations are managed by testlistner, After completion of execution reports are tracked under allure-results folder. Use below method for logging addtion step information
+   - message() for tracing test step
+   - logAssertTrue() for assert positive flow
+   - logAssertFalse() for asserting negative flow
+   - logAssertEqual() for comparision
+use below annotation in test method to capture additional info
+   - @Epic to categorize test class
+   - @description to mention test case description
+   - @group to categories test groups
+   - @Issue to denotes known issue
+
+Sample allure report:
+
+![Sample Allure Report](https://github.com/Susilkumar-Udhayakumar/HybridSDK_Mobile_Automation/assets/108650907/084bef4b-3aa2-4ec9-9853-7843e18c6447)
+
+ 
