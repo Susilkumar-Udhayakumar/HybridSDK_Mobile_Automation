@@ -4,15 +4,13 @@
 
 - [Introduction](#introduction)
 - [Features](#features)
+- [Architecture](#architecture)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
 - [Getting Started](#getting-started)
 - [Configuration](#configuration)
-- [Writing Test Cases](#writing-test-cases)
 - [Running Tests](#running-tests)
 - [Reporting](#reporting)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Introduction
 
@@ -155,4 +153,30 @@ With these configurations, you can tailor your test execution based on the TestN
   - Go to project location
   - Run maven command `mvn clean test -DsuiteXmlFile=androidsaucelabs.xml -DtestType=smoke -DCLOUD_DEVICE_NAME=Samsung_S7_Plus_real_us -DPLATFORM_VERSION=11 -DSAUCE_USERNAME=***** -DSAUCE_ACCESS_KEY=**** -DRUN_ID=95790` 
 
+## Reporting
 
+### Logs
+
+For tracing logs log4j is used, call below methods for logging information. Logged information are traced inside log folder
+   - info() for tracing launch and termination details of test and api.
+   - debug() for logging debug information such as api response string and action result
+   - message() for logging all test step
+   - pass() for logging success test result
+   - fail() for logging failed test result
+   - skip() for logging skipped test result
+
+sample log report:
+![Sample log report](https://github.com/Susilkumar-Udhayakumar/HybridSDK_Mobile_Automation/assets/108650907/7004efd0-c668-440e-ab88-0f9d8650153f)
+
+### Extent Report
+
+Extent reports are setup and generations are managed by testlistner, After completion of execution reports are tracked under Extent Report folder. Use below method for logging addtion step information
+   - message() for tracing test step
+   - logAssertTrue() for assert positive flow
+   - logAssertFalse() for asserting negative flow
+   - logAssertEqual() for comparision
+
+Sample extent report:
+![Sample extent report](https://github.com/Susilkumar-Udhayakumar/HybridSDK_Mobile_Automation/assets/108650907/0849dff6-fdbe-4123-96f8-6c60e0b6dd75)
+
+ 
