@@ -9,11 +9,14 @@
 		value="local"></parameter>
 	<parameter name="appName"
 		value="hybridsdk-android.apk"></parameter>
+	<listeners>
+		<listener class-name="lwsdk.app.listeners.TestListeners"></listener>
+	</listeners>
 
 	<test thread-count="5" name="LighweighSDK">
 		<classes>
 			<class name="lwsdk.android.module.testcases.SampleTestCaseAndroid" />
-			
+
 		</classes>
 	</test>
 </suite> 

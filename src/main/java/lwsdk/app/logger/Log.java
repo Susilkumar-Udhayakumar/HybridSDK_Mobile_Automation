@@ -65,6 +65,7 @@ public class Log {
 		ExtentReport.pass(m);
 		logger.info(logText);
 		AllureReport.printTextLog(logText);
+		logger.info("****             " + "-Assert Passed Test--case--Execution--Ended--" + "             *****");
 	}
 	
 	/**
@@ -78,6 +79,7 @@ public class Log {
 		ExtentReport.pass(m);
 		logger.info(message);
 		AllureReport.printTextLog(message);
+		logger.info("****             " + "-Assert Passed Test--case--Execution--Ended--" + "             *****");
 	}
 	
 	/**
@@ -104,6 +106,7 @@ public class Log {
 		
 		logger.info(logText);
 		AllureReport.printSkippedTextLog(logText);
+		logger.info("****             " + "-Assert Skipped Test--case--Execution--Ended--" + "             *****");
 	}
 	
 	/**
@@ -119,6 +122,7 @@ public class Log {
 		
 		AllureReport.printFailedLogWithScreenShot(message, driver);
 		logger.error(message);
+		logger.info("****             " + "-Assert Failed Test--case--Execution--Ended--" + "             *****");
 	}
 	
 	/**
@@ -146,6 +150,7 @@ public class Log {
 		
 		AllureReport.printFailedTextLog(logText);
 		logger.error(logText);
+		logger.info("****             " + "-Assert Failed Test--case--Execution--Ended--" + "             *****");
 	}
 	
 	/**
@@ -157,6 +162,7 @@ public class Log {
 	public static void exception(Exception e) {
 		
 		logger.error(e.getMessage());
+		logger.info("****             " + "-Exception occured Test--case--Execution--Ended--" + "             *****");
 		if (e instanceof SkipException) {
 			ExtentReport.skip(e.getMessage());
 			ExtentReport.logStackTrace(e);
@@ -177,6 +183,7 @@ public class Log {
 	public static void exception(Exception e, AppiumDriver driver) {
 		
 		logger.error(e.getMessage());
+		logger.info("****             " + "-Exception occured Test--case--Execution--Ended--" + "             *****");
 		if (e instanceof SkipException) {
 			ExtentReport.skip(e.getMessage());
 			ExtentReport.logStackTrace(e);
@@ -245,6 +252,7 @@ public class Log {
 	public static void testEnd() {
 		Thread.currentThread().getName();
 		ExtentReport.flushReports();
+		logger.info("****             " + "-Test--Execution--Ended--" + "             *****");
 	}
 
 }

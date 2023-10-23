@@ -76,7 +76,7 @@ public class IOSBase extends IOSMobileWrapperImpl {
 	@AfterMethod(groups = {"smoke"})
 	public void afterMethod() {
 		try {
-			Log.message("After Method");
+			Log.info("After Method");
 			driver.quit();
 		}
 		catch(Exception e) {
