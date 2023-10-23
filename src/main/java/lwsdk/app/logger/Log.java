@@ -245,7 +245,6 @@ public class Log {
 	public static void testEnd() {
 		Thread.currentThread().getName();
 		ExtentReport.flushReports();
-		logger.info("****             " + "-Test--Case--Ended--" + "             *****");
 	}
 
 }
