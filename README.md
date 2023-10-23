@@ -66,8 +66,79 @@ These prerequisites are essential for local execution with this framework. Pleas
 
 ## Sauce Labs Execution
 
-1. For executing tests on Sauce Labs, you only need to set up your Sauce Labs credentials (username and access key). No additional local prerequisites are required for cloud-based execution.
+- For executing tests on Sauce Labs, you only need to set up your Sauce Labs credentials (username and access key). No additional local prerequisites are required for cloud-based execution.
 
-2. With these simple steps, you can leverage the power of Sauce Labs for cloud-based test execution, allowing you to test your mobile apps on a wide range of real devices and configurations.
+## Installation
 
-3. Please ensure that your Sauce Labs credentials are kept secure and not shared publicly in your code repositories.
+To install the MyAppium Automation Framework, follow these steps:
+
+1. **Clone the Repository**: Use the following command to clone the repository to your local machine:
+
+   ```bash
+   git clone https://github.com/your-username/myappium-automation.git
+
+2. Once the repository is cloned, open the project in your preferred Integrated Development Environment (IDE), such as Eclipse or IntelliJ IDEA.
+
+## Getting Started
+
+To create a new automation project using the MyAppium Framework, follow these steps:
+
+1. **Navigate to the Test Directory**: Go to the `src/test/java` directory within your project.
+
+2. **Add Your Test Class**: In the `src/test/java` directory, create your test class as shown in the example image below:
+
+   ![Test Class Example](images/test-class-example.png)
+
+   Ensure that your test class follows the necessary structure and naming conventions, and contains your test methods for automating your mobile app.
+
+3. **Include in TestNG XML Files**: Add your test class to the TestNG XML files for test execution. Configure your test suites to include the newly created test class.
+
+With these steps, you can begin your journey in creating and running automated tests using the MyAppium Framework.
+
+## Configuration
+
+To configure your MyAppium Framework project, follow these steps:
+
+1. **Update TestNG XML and Test Type**:
+   - Open the `pom.xml` file in your project.
+   - Update the TestNG XML file you want to run and specify the type of test you want to execute (e.g., smoke, sanity, regression).
+   - This can be configured as shown in the example image below:
+
+   ![TestNG Configuration Example](images/testng-configuration-example.png)
+
+2. **Sauce Labs Configuration**:
+   - To run tests on Sauce Labs, you need to set up two environment variables, `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY`.
+   - Configure these environment variables in your local development environment or CI/CD pipeline as shown in the example image below:
+
+   ![Sauce Labs Configuration Example](images/saucelabs-configuration-example.png)
+
+
+## Running Tests
+
+To execute your tests with the MyAppium Framework, follow these steps:
+
+### From TestNG File
+
+1. **Run from TestNG File**:
+   - Right-click on the TestNG XML file you've configured for your tests.
+   - Select "Run As TestNG Test" from the context menu.
+   - You can initiate your tests by following the steps as shown in the example image below:
+
+   ![Running Tests from TestNG File](images/run-testng-example.png)
+
+### As a Maven Project
+
+1. **Run as a Maven Project**:
+   - Right-click on your project in your IDE.
+   - Select "Maven" from the context menu and click "Clean."
+   - After the clean process completes, right-click on the project again.
+   - Select "Maven" from the context menu and click "Test."
+   - You can start your test execution as a Maven project by following the steps shown in the example image below:
+
+   ![Running Tests as a Maven Project](images/run-maven-example.png)
+
+These steps provide options for running your tests directly from the TestNG XML file or as part of a Maven project.
+
+With these configurations, you can tailor your test execution based on the TestNG XML and set up the necessary environment variables for Sauce Labs integration.
+
+
