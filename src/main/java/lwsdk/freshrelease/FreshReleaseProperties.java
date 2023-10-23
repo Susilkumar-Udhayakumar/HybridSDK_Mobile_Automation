@@ -13,7 +13,7 @@ import lwsdk.app.logger.Log;
 public class FreshReleaseProperties {
 	
 	public static final String configFileLoc = System.getProperty("user.dir") 
-			+ File.separator + "/resources/freshreleaseConfig.properties";
+			+ File.separator + "/src/main/resources/freshreleaseConfig.properties";
 	public static String baseURI, accessToken, projectKey;
 	public static int runId;
 

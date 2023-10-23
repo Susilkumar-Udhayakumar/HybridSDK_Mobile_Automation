@@ -79,7 +79,6 @@ public class Log {
 		ExtentReport.pass(m);
 		logger.info(message);
 		AllureReport.printTextLog(message);
-		logger.info("****             " + "-Assert Passed Test--case--Execution--Ended--" + "             *****");
 	}
 	
 	/**
@@ -122,7 +121,6 @@ public class Log {
 		
 		AllureReport.printFailedLogWithScreenShot(message, driver);
 		logger.error(message);
-		logger.info("****             " + "-Assert Failed Test--case--Execution--Ended--" + "             *****");
 	}
 	
 	/**
@@ -162,7 +160,6 @@ public class Log {
 	public static void exception(Exception e) {
 		
 		logger.error(e.getMessage());
-		logger.info("****             " + "-Exception occured Test--case--Execution--Ended--" + "             *****");
 		if (e instanceof SkipException) {
 			ExtentReport.skip(e.getMessage());
 			ExtentReport.logStackTrace(e);

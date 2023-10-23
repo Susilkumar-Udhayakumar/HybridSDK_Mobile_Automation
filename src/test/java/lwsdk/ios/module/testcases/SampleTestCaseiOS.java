@@ -2,6 +2,7 @@ package lwsdk.ios.module.testcases;
 
 import org.testng.annotations.Test;
 import io.qameta.allure.Epic;
+import io.qameta.allure.Issue;
 import lwsdk.app.base.impl.IOSBase;
 import lwsdk.app.pages.ConversationListPage;
 import lwsdk.app.pages.HomePage;
@@ -20,4 +21,15 @@ public class SampleTestCaseiOS extends IOSBase  {
 		.clickConversationButton();
 	}
 	
+	@Issue("MCX-7745")
+	@Test(description = "To check description display 2", groups = {"smoke"})
+	@TestData(testId = 4054)
+	public void testAndroidMethod2() {
+		System.out.println("Syso testAndroidMethod2");
+		new HomePage(driver)
+		.clickConversationButton();
+		new ConversationListPage(driver)
+		.clickConversationButton();
+		
+	}
 }
