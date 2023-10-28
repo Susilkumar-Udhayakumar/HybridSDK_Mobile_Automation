@@ -5,17 +5,17 @@
 		value="10A4A34F-66B8-4F35-ACF2-77AD1C811B2F"></parameter>
 	<parameter name="url"
 		value="http://127.0.0.1:4723"></parameter>
-	<parameter name="exec"
+	<parameter name="executingEnvironment"
 		value="local"></parameter>
 	<parameter name="appName"
 		value="hybridsdk-ios.app"></parameter>
 
 	<listeners>
-		<listener class-name="lwsdk.app.listeners.TestListeners"></listener>
+		<listener class-name="com.freshchat.lwsdk.app.listeners.TestListeners"></listener>
 	</listeners>
 	<test thread-count="5" name="LighweighSDK">
 		<classes>
-			<class name="lwsdk.ios.module.testcases.SampleTestCaseiOS" />
+			<class name="com.freshchat.lwsdk.ios.module.testcases.SampleTestCaseiOS" />
 		</classes>
 	</test>
 </suite> 

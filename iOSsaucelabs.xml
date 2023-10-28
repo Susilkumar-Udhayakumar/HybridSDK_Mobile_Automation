@@ -5,17 +5,17 @@
 		value="iPhone 14"></parameter>
 	<parameter name="url"
 		value="@ondemand.us-west-1.saucelabs.com:443/wd/hub"></parameter>
-	<parameter name="exec"
+	<parameter name="executingEnvironment"
 		value="saucelabs"></parameter>
 	<parameter name="appName"
 		value="hybridsdk-ios.ipa"></parameter>
 
 	<listeners>
-		<listener class-name="lwsdk.app.listeners.TestListeners"></listener>
+		<listener class-name="com.freshchat.lwsdk.app.listeners.TestListeners"></listener>
 	</listeners>
 	<test name="LighweighSDK">
 		<classes>
-			<class name="lwsdk.ios.module.testcases.SampleTestCaseiOS" />
+			<class name="com.freshchat.lwsdk.ios.module.testcases.SampleTestCaseiOS" />
 		</classes>
 	</test>
 </suite> 
