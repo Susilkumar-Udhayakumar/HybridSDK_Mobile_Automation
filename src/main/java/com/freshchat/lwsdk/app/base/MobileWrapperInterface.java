@@ -27,7 +27,7 @@ public interface MobileWrapperInterface {
 	 * 
 	 * @param driver
 	 */
-	public void switchToWebView(AppiumDriver driver);
+	public void switchToWebView(AppiumDriver driver, String contextName);
 
 	/**
 	 * Method to switch to frame

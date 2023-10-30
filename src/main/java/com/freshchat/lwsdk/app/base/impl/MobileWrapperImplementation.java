@@ -69,12 +69,12 @@ public class MobileWrapperImplementation implements MobileWrapperInterface {
 	 * @param driver
 	 */
 	@Override
-	public void switchToWebView(AppiumDriver driver) {
+	public void switchToWebView(AppiumDriver driver, String contextName) {
 		try {
 			Set<String> contextHandles = ((AndroidDriver) driver).getContextHandles();
 			Log.debug("List of handles available : " + contextHandles);
 			for (String context : contextHandles) {
-				if (context.contains("WEBVIEW")) {
+				if (context.contains(contextName)) {
 					// Switch to the WebView context
 					((SupportsContextSwitching) driver).context(context);
 					Log.message("Switched to WebView");
@@ -119,8 +119,13 @@ public class MobileWrapperImplementation implements MobileWrapperInterface {
 		
 	}
 	
-	public AppiumDriver getDriver() {
-		return driver.get();
+	/**
+	 * Method to scroll to element and will be override by derived class
+	 */
+	public void scrollIntoView(WebElement element, AppiumDriver driver) {
+		//will be override in Android and IOS implementation
 	}
+	
+	
 
 }

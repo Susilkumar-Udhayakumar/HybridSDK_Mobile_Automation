@@ -19,7 +19,7 @@ import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 public class HomePage {
 
 	public ThreadLocal<AppiumDriver> driver;
-	public MobileWrapperImplementation base;
+	public MobileWrapperImplementation mobileUtils;
 
 	/**
 	 * Constructor to initialize driver
@@ -30,9 +30,9 @@ public class HomePage {
 		this.driver = driver;
 		PageFactory.initElements(new AppiumFieldDecorator(driver.get()), this);
 		if (AndroidBase.platform != null && AndroidBase.platform.equals("Android")) {
-			base = new AndroidMobileWrapperImplmentation();
+			mobileUtils = new AndroidMobileWrapperImplmentation();
 		} else if ((IOSBase.platform != null && IOSBase.platform.equals("iOS"))) {
-			base = new IOSMobileWrapperImplementation();
+			mobileUtils = new IOSMobileWrapperImplementation();
 		}
 	}
 
@@ -50,7 +50,7 @@ public class HomePage {
 	 * Method to click allow button
 	 */
 	public HomePage clickAllowButton() {
-		base.click(allowButton, driver.get(), "Clicked Allow Button");
+		mobileUtils.click(allowButton, driver.get(), "Clicked Allow Button");
 		return this;
 	}
 
@@ -58,7 +58,7 @@ public class HomePage {
 	 * Method to click conversation button in home page
 	 */
 	public HomePage clickConversationButton() {
-		Log.logAssertTrue(base.click(conversationButton, driver.get(), "Clicked Conversation Method"),
+		Log.logAssertTrue(mobileUtils.click(conversationButton, driver.get(), "Clicked Conversation Method"),
 				"Conversation button clicked successfully", "Issue occured while clicking show conversation button ");
 		return this;
 	}
@@ -67,9 +67,20 @@ public class HomePage {
 	 * Method to switch iframe in web view
 	 */
 	public HomePage switchToWebViewWithFrame() {
-		base.staticWait(15000);
-		base.switchToWebView(driver.get());
-		base.switchToFrame(driver.get(), webViewFrame);
+		mobileUtils.staticWait(5000);
+		mobileUtils.switchToWebView(driver.get(), "WEBVIEW");
+		mobileUtils.switchToFrame(driver.get(), webViewFrame);
+		return this;
+	}
+	
+	/**
+	 * Method to check conversation button in home page
+	 */
+	public HomePage checkConversationButtonInHomePage() {
+		mobileUtils.staticWait(5000);
+		mobileUtils.switchToWebView(driver.get(), "NATIVE_APP");
+		Log.logAssertTrue(mobileUtils.isDisplay(conversationButton, driver.get(), "Conversation button appears"),
+				"Homepage is displayed and conversation button appears in it", "Issue in displaying conversation button in home page");
 		return this;
 	}
 

@@ -14,7 +14,7 @@
 	</listeners>
 	<test name="LighweighSDK">
 		<classes>
-			<class name="com.freshchat.lwsdk.android.module.testcases.SampleTestCaseAndroid" />
+			<class name="com.freshchat.lwsdk.android.module.testcases.ConversationListTest" />
 		</classes>
 	</test>
 </suite> 

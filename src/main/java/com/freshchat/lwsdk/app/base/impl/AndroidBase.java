@@ -18,7 +18,6 @@ import io.appium.java_client.AppiumDriver;
 
 public class AndroidBase extends AndroidMobileWrapperImplmentation {
 	
-	
 	public static String platform;
 	public DriverManager driverManager;
 	public AppiumDriver localDriver;
@@ -85,7 +84,7 @@ public class AndroidBase extends AndroidMobileWrapperImplmentation {
 	public void afterMethod() {
 		try {
 			Log.info("After Method");
-			driverManager.stopAppiumServer();
+			//driverManager.stopAppiumServer();
 	        if (localDriver != null) {
 	        	localDriver.quit();
 	        	driver.remove();
