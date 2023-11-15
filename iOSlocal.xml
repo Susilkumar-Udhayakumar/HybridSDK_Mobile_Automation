@@ -2,20 +2,23 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Suite">
 	<parameter name="deviceName"
-		value="10A4A34F-66B8-4F35-ACF2-77AD1C811B2F"></parameter>
+		value="ed67780a2fcdfccc2453dc934a58416a62e04b5b"></parameter>
 	<parameter name="url"
-		value="http://127.0.0.1:4723"></parameter>
+		value="http://127.0.0.1:4723/wd/hub"></parameter>
 	<parameter name="executingEnvironment"
 		value="local"></parameter>
 	<parameter name="appName"
 		value="hybridsdk-ios.app"></parameter>
+	<parameter name="env"
+		value="eu"></parameter>
 
 	<listeners>
 		<listener class-name="com.freshchat.lwsdk.app.listeners.TestListeners"></listener>
 	</listeners>
 	<test thread-count="5" name="LighweighSDK">
 		<classes>
-			<class name="com.freshchat.lwsdk.ios.module.testcases.SampleTestCaseiOS" />
+			<class
+				name="com.freshchat.lwsdk.ios.module.testcases.SampleTestCaseiOS" />
 		</classes>
 	</test>
 </suite> 

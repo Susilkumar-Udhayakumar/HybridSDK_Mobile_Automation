@@ -51,15 +51,16 @@ public class IOSBase extends IOSMobileWrapperImplementation {
 	 * @param exec - execution environment local / saucelab
 	 * @param appName - app name 
 	 */
-	@Parameters({"deviceName","url","executingEnvironment","appName"})
+	@Parameters({"deviceName","url","executingEnvironment","appName","env"})
 	@BeforeMethod(groups = {"smoke","regression","sanity"})
-	public void beforeMethod(String deviceName, String url,String executingEnvironment, String appName){
+	public void beforeMethod(String deviceName, String url,String executingEnvironment, String appName, String env){
 		
 		try {
 			Log.info("Before Method");
 			driverManager = new DriverManager();
 			if (executingEnvironment.equals("local")) {
 				//driverManager.startAppiumServer();
+				auth(env);
 				localDriver=driverManager.setiOSDriverLocal(deviceName, url, appName);
 				driver.set(localDriver);
 			} else if (executingEnvironment.equals("saucelabs")) {

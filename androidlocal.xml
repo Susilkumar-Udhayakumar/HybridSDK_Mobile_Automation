@@ -2,13 +2,15 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Suite">
 	<parameter name="deviceName"
-		value="emulator-5554"></parameter>
+		value="192.168.29.131:5555"></parameter>
 	<parameter name="url"
-		value="http://127.0.0.1:4723"></parameter>
+		value="http://127.0.0.1:4723/wd/hub"></parameter>
 	<parameter name="executingEnvironment"
 		value="local"></parameter>
 	<parameter name="appName"
 		value="hybridsdk-android.apk"></parameter>
+	<parameter name="env"
+		value="eu"></parameter>
 	<listeners>
 		<listener class-name="com.freshchat.lwsdk.app.listeners.TestListeners"></listener>
 	</listeners>

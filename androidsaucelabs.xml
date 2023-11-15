@@ -9,12 +9,15 @@
 		value="saucelabs"></parameter>
 	<parameter name="appName"
 		value="app-debug.apk"></parameter>
+	<parameter name="env"
+		value="eu"></parameter>
 	<listeners>
 		<listener class-name="com.freshchat.lwsdk.app.listeners.TestListeners"></listener>
 	</listeners>
 	<test name="LighweighSDK">
 		<classes>
-			<class name="com.freshchat.lwsdk.android.module.testcases.ConversationListTest" />
+			<class
+				name="com.freshchat.lwsdk.android.module.testcases.ConversationListTest" />
 		</classes>
 	</test>
 </suite> 

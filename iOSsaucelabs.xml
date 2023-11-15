@@ -9,13 +9,16 @@
 		value="saucelabs"></parameter>
 	<parameter name="appName"
 		value="hybridsdk-ios.ipa"></parameter>
+	<parameter name="env"
+		value="eu"></parameter>
 
 	<listeners>
 		<listener class-name="com.freshchat.lwsdk.app.listeners.TestListeners"></listener>
 	</listeners>
 	<test name="LighweighSDK">
 		<classes>
-			<class name="com.freshchat.lwsdk.ios.module.testcases.SampleTestCaseiOS" />
+			<class
+				name="com.freshchat.lwsdk.ios.module.testcases.SampleTestCaseiOS" />
 		</classes>
 	</test>
 </suite> 
